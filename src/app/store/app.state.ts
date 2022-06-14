@@ -1,6 +1,6 @@
-import { bookFeature, BookFeatureState } from '../book/store';
+import { bookFeatureName, BookFeatureState } from '../book/store';
 
 export interface AppState {
-  [bookFeature]: BookFeatureState;
+  [bookFeatureName]: BookFeatureState;
   // ... many features
 }

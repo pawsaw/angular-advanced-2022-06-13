@@ -3,17 +3,22 @@ import { CommonModule } from '@angular/common';
 import { BookComponent } from './book.component';
 import { BookNewComponent } from './book-new/book-new.component';
 import { StoreModule } from '@ngrx/store';
-import { bookCollectionReducer, bookFeature } from './store';
+import { bookCollectionReducer, bookFeatureName } from './store';
 import { BookRoutingModule } from './book-routing.module';
 import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
-  declarations: [BookComponent, BookNewComponent, BookListComponent, BookDetailsComponent],
+  declarations: [
+    BookComponent,
+    BookNewComponent,
+    BookListComponent,
+    BookDetailsComponent,
+  ],
   imports: [
     CommonModule,
     BookRoutingModule,
-    StoreModule.forFeature(bookFeature, {
+    StoreModule.forFeature(bookFeatureName, {
       bookCollection: bookCollectionReducer,
     }),
   ],

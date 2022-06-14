@@ -1,3 +1,4 @@
+import { createFeatureSelector } from '@ngrx/store';
 import { BookCollectionSlice } from './book-collection.slice';
 
 export interface BookFeatureState {
@@ -5,4 +6,7 @@ export interface BookFeatureState {
   // many slices
 }
 
-export const bookFeature = 'book';
+export const bookFeatureName = 'book';
+
+export const bookFeature =
+  createFeatureSelector<BookFeatureState>(bookFeatureName);
