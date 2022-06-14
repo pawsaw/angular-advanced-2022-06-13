@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createNewBook } from '@bookm/book/store';
+import { createNewBook } from '../store/book-collection';
 
 @Component({
   selector: 'app-book-new',

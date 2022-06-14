@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { bookFeature } from './book.feature';
+import { bookFeature } from '../book.feature';
 
 export const bookCollection = createSelector(
   bookFeature,

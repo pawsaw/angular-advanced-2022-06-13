@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { Book } from '../../../domain';
-import { bookByIsbn } from '../store';
+import { bookByIsbn } from '../store/book-collection';
 
 @Component({
   selector: 'app-book-details',
@@ -21,7 +21,7 @@ export class BookDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.book$ = this._route.params.pipe(
       switchMap(({ isbn }) => this._store.select(bookByIsbn(isbn))),
-      map((book) => book ?? null)
+      map((book: Book | undefined) => book ?? null)
     );
   }
 }

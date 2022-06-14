@@ -1,6 +1,5 @@
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
-import { bookCollectionReducer } from './book-collection.reducer';
-import { BookCollectionSlice } from './book-collection.slice';
+import { bookCollectionReducer, BookCollectionSlice } from './book-collection';
 
 export interface BookFeatureState {
   bookCollection: BookCollectionSlice;
