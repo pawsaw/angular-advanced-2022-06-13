@@ -7,3 +7,9 @@ export const createNewBook = createAction(
     book: Book;
   }>()
 );
+
+export const loadBooksStart = createAction('[Book] Load Books Started');
+export const loadBooksComplete = createAction(
+  '[Book] Load Books Completed',
+  props<{ books: Book[] }>()
+);
