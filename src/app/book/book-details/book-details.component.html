@@ -1,0 +1,6 @@
+<div>
+  <div *ngIf="book$ | async as book; else loading">
+    {{ book.id }}: {{ book.title }}
+  </div>
+  <ng-template #loading>Loading book...</ng-template>
+</div>

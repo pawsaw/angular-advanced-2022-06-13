@@ -21,7 +21,18 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@bookm/domain": [
+        "./src/domain"
+      ],
+      "@bookm/book": [
+        "./src/app/book"
+      ],
+      "@bookm/book/store": [
+        "./src/app/book/store"
+      ]
+    },
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
