@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, of, switchMap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Book } from '../../../domain';
-import { bookByIsbn } from '../store/book-collection';
+import { bookByIsbnRouteParam } from '../store/book-collection';
 
 @Component({
   selector: 'app-book-details',
@@ -13,15 +12,9 @@ import { bookByIsbn } from '../store/book-collection';
 export class BookDetailsComponent implements OnInit {
   book$: Observable<Book | null> = of(null);
 
-  constructor(
-    private readonly _route: ActivatedRoute,
-    private readonly _store: Store
-  ) {}
+  constructor(private readonly _store: Store) {}
 
   ngOnInit(): void {
-    this.book$ = this._route.params.pipe(
-      switchMap(({ isbn }) => this._store.select(bookByIsbn(isbn))),
-      map((book: Book | undefined) => book ?? null)
-    );
+    this.book$ = this._store.select(bookByIsbnRouteParam);
   }
 }

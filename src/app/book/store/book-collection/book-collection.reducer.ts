@@ -38,7 +38,7 @@ export const bookCollectionReducer = createReducer(
   }),
   on(loadBooksComplete, (state, action) => {
     return {
-      ...adapter.addMany(action.books, state),
+      ...adapter.setMany(action.books, state),
       loading: false,
     };
   })

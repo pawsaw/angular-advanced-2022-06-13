@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { routerFeatureName } from './store/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot(
-      {},
+      {
+        [routerFeatureName]: routerReducer,
+      },
       {
         runtimeChecks: {
           strictActionImmutability: true,
@@ -31,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     AppRoutingModule,
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

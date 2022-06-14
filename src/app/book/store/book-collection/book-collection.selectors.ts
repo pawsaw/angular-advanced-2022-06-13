@@ -2,6 +2,7 @@ import { createEntityAdapter } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
 import { Book } from '@bookm/domain';
 import { bookFeature } from '../book.feature';
+import { selectRouteParam } from '../../../store/router';
 
 const bookCollectionSlice = createSelector(
   bookFeature,
@@ -15,3 +16,9 @@ export const { selectEntities: bookById, selectAll: bookCollection } =
 
 export const bookByIsbn = (isbn: string) =>
   createSelector(bookById, (books) => books[isbn]);
+
+export const bookByIsbnRouteParam = createSelector(
+  selectRouteParam('isbn'),
+  bookById,
+  (isbn, books) => (isbn ? books[isbn]! : null)
+);
