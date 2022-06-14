@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { createNewBook } from '../store/book-collection';
+import { createBookStart } from '../store/book-collection';
 
 @Component({
   selector: 'app-book-new',
@@ -14,9 +14,9 @@ export class BookNewComponent implements OnInit {
 
   createDummyBook(): void {
     this._store.dispatch(
-      createNewBook({
+      createBookStart({
         book: {
-          id: '10',
+          isbn: '10',
           title: 'My dummy book',
         },
       })

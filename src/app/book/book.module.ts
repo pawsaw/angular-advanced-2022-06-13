@@ -10,7 +10,6 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { EffectsModule } from '@ngrx/effects';
 import { BookCollectionEffects } from './store/book-collection';
-import { BookService } from '../book.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +25,5 @@ import { BookService } from '../book.service';
     EffectsModule.forFeature([BookCollectionEffects]),
   ],
   exports: [BookComponent, BookNewComponent],
-  providers: [BookService],
 })
 export class BookModule {}

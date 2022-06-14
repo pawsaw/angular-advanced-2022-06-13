@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map } from 'rxjs';
 import { BookService } from '../../book.service';
-import { loadBooksComplete, loadBooksStart } from './book-collection.actions';
+import {
+  createBookComplete,
+  createBookStart,
+  loadBooksComplete,
+  loadBooksStart,
+} from './book-collection.actions';
 
 @Injectable()
 export class BookCollectionEffects {
@@ -11,6 +16,14 @@ export class BookCollectionEffects {
       ofType(loadBooksStart),
       exhaustMap((action) => this._books.books()),
       map((books) => loadBooksComplete({ books }))
+    )
+  );
+
+  createBook = createEffect(() =>
+    this._actions$.pipe(
+      ofType(createBookStart),
+      exhaustMap((action) => this._books.create(action.book)),
+      map((book) => createBookComplete({ book }))
     )
   );
 
