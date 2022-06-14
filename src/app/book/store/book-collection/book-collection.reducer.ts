@@ -1,3 +1,4 @@
+import { createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { Book } from '../../../../domain';
 import {
@@ -8,8 +9,10 @@ import {
 } from './book-collection.actions';
 import { BookCollectionSlice } from './book-collection.slice';
 
+const adapter = createEntityAdapter<Book>({ selectId: (model) => model.isbn });
+
 const initialState: BookCollectionSlice = {
-  entities: [],
+  ...adapter.getInitialState(),
   loading: false,
 };
 
@@ -23,8 +26,7 @@ export const bookCollectionReducer = createReducer(
   }),
   on(createBookComplete, (state, action) => {
     return {
-      ...state,
-      entities: [...state.entities, action.book],
+      ...adapter.addOne(action.book, state),
       loading: false,
     };
   }),
@@ -36,8 +38,7 @@ export const bookCollectionReducer = createReducer(
   }),
   on(loadBooksComplete, (state, action) => {
     return {
-      ...state,
-      entities: [...action.books],
+      ...adapter.addMany(action.books, state),
       loading: false,
     };
   })
